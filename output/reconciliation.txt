@@ -1,0 +1,21 @@
+OLIST — RECONCILIATION (computed from the real files, 2026-11-13)
+raw rows customers: 99441
+raw rows geolocation: 1000163
+raw rows orders: 99441
+raw rows order_items: 112650
+raw rows order_payments: 103886
+raw rows order_reviews: 99224
+raw rows products: 32951
+raw rows sellers: 3095
+raw rows category_translation: 71
+TOTAL raw rows (9 files): 1550922
+GMV = sum(price) over order_items: BRL 13,591,643.70
+Freight = sum(freight_value): BRL 2,256,599.44
+Paid = sum(payment_value): BRL 16,008,872.12
+Paid - (GMV + freight): BRL 160,628.98 (small gap = orders paid but cancelled/unfulfilled, and rounding)
+Orders present in items: 98666; in payments: 99440; in orders table: 99441
+Per-file scope (each output file sums only to its own defined total):
+monthly_gmv.csv and state_summary.csv: DELIVERED orders only, sum to BRL 13,221,498.11 over 96478 orders. Gap to headline GMV is BRL 370,145.59 of non-delivered orders.
+category_summary.csv: ALL order items by product category, including an 'uncategorised' row for items whose product has no category in the products table (610 products, 1,603 items, BRL 179,535.28). With that row it sums to headline GMV.
+payment_type_summary.csv: all payments, sums to Paid above. order_status_counts.csv: all orders, sums to 99,441. delivery_vs_review.csv: delivered orders only.
+Note: the 'orders' column in category_summary.csv counts an order once per category it appears in, so it does not sum to the order total.
