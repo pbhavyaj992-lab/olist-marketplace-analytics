@@ -87,3 +87,10 @@ Note: the 'orders' column in category_summary.csv counts an order once per categ
 
 ## Stack
 Power BI, DAX, Python (pandas), SQL, PostgreSQL, Excel. Built by Bhavya Patel.
+
+## What I would do differently
+
+- There is no `.pbix` in this repo. I would build the Power BI report from `powerbi/model.md` and check every measure against `output/kpis.txt`.
+- The Excel workbook is a reconciled workbook, not an interactive dashboard. I would rebuild it with PivotTables, slicers and a timeline so the reader can filter by state, category and month.
+- The BRL 160,628.98 gap between payments and GMV plus freight is explained in reconciliation, but I would trace it line by line (paid-but-cancelled vs not-yet-fulfilled) instead of leaving it as one explained total.
+- 610 products have no category, which puts 1,603 items and BRL 179,535.28 into an 'uncategorised' row. I would try to resolve those categories from a fuller product catalogue before publishing the category ranking.
